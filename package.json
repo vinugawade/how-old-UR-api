@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "prepare": "nitropack prepare",
-    "dev": "nitropack dev",
+    "dev": "nitropack dev --publicURL --qr --https --clipboard --open",
     "build": "nitropack build",
     "preview": "node .output/server/index.mjs"
   },
