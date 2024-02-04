@@ -1,5 +1,4 @@
 // utils/todayUtils.ts
-import { validateAndSetLanguage } from './languageUtils';
 
 /**
  * Common logic to generate the response object for today's date and time details.

@@ -1,6 +1,5 @@
 // routes/api/[langcode]/today/index.get.ts
 // This route handles requests to /api/[langcode]/today endpoint.
-import { generateTodayResponse } from '../../../../utils/todayUtils';
 
 export default async (event: { context: { params: { langcode?: string; }; query: { custom?: string } } }): Promise<any> => {
   let langcode = event.context.params.langcode;
