@@ -1,14 +1,13 @@
-// routes/api/[langcode]/today/index.get.ts
-// This route handles requests to /api/[langcode]/today endpoint.
-import { generateTodayResponse } from '../../../../utils/todayUtils';
+// routes/api/today/index.ts
+// This route handles requests to /api/today endpoint.
+import { generateTodayResponse } from '../../../utils/todayUtils';
 
 export default async (event: { context: { params: { langcode?: string; }; query: { custom?: string } } }): Promise<any> => {
-  let langcode = event.context.params.langcode;
   try {
     return generateTodayResponse(event);
   } catch (error) {
     // Handle errors if needed
-    console.error(`Error in /api/${langcode}/today route handler:`, error);
+    console.error(`Error in /api/today/[...] route handler:`, error);
     return {
       error: 'Internal Server Error',
       errorMessage: error.message,
