@@ -2,8 +2,7 @@
 // This route handles requests to /api/today endpoint.
 export default eventHandler((event) => {
   try {
-    const custom: any = getQuery(event).custom || '';
-    return $fetch(`/api/en/today?custom=${custom}`, {
+    return $fetch(`/api/en/today`, {
         method: 'GET',
       }
     );

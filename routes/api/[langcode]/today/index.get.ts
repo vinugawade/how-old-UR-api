@@ -3,10 +3,9 @@
 
 export default eventHandler((event) => {
   const langcode: string = event.context.params.langcode;
-  const custom: any = getQuery(event).custom || 'EEEE, MMMM dd, yyyy hh:mm a zzz';
 
   try {
-    return generateTodayResponse({ langcode, custom });
+    return generateTodayResponse({ langcode });
   } catch (error) {
     // Handle errors if needed
     console.error(`Error in /api/${langcode}/today route handler:`, error);
