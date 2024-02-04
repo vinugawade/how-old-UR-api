@@ -1,8 +1,12 @@
 // routes/api/today/index.ts
 // This route handles requests to /api/today endpoint.
-export default async (event: { context: { params: { langcode?: string; }; query: { custom?: string } } }): Promise<any> => {
+export default eventHandler((event) => {
   try {
-    return await $fetch('/api/en/today');
+    const custom: any = getQuery(event).custom || '';
+    return $fetch(`/api/en/today?custom=${custom}`, {
+        method: 'GET',
+      }
+    );
   } catch (error) {
     // Handle errors if needed
     console.error(`Error in /api/today route handler:`, error);
@@ -11,4 +15,4 @@ export default async (event: { context: { params: { langcode?: string; }; query:
       errorMessage: error.message,
     };
   }
-};
+});

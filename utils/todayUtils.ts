@@ -2,12 +2,13 @@
 
 /**
  * Common logic to generate the response object for today's date and time details.
- * @param {Object} event - The event object representing the incoming request.
+ * @param {Object} param - The param object representing the incoming request.
  * @returns {Object} - Response object with today's date and time details.
  */
-export function generateTodayResponse(event: { context: { params: { langcode?: string; }; query: { custom?: string } } }): any {
+export function generateTodayResponse(param: { langcode?: string; custom?: string }): any {
   // Get the user-specified language code from the route params or default to 'en'
-  const langcode = event.context.params.langcode || 'en';
+  const langcode = param.langcode;
+  const custom = param.custom;
 
   // Validate and set the language code
   const validatedLangcode = validateAndSetLanguage(langcode);
@@ -23,17 +24,9 @@ export function generateTodayResponse(event: { context: { params: { langcode?: s
       dateString: today.toDateString(),
       timeString: today.toTimeString(),
       localeString: today.toLocaleString(),
-      customFormat: getCustomFormattedDate(today, validatedLangcode, 'EEEE, MMMM dd, yyyy hh:mm a zzz'),
+      customFormat: getCustomFormattedDate(today, validatedLangcode, custom),
     },
   };
-
-  // Check if the user specified the format in the query parameters
-  const customFormatParam = event.context.query?.custom;
-
-  if (customFormatParam) {
-    // User specified a custom format using the 'custom' parameter
-    response.formats.customFormat = getCustomFormattedDate(today, validatedLangcode, customFormatParam);
-  }
 
   return response;
 }
