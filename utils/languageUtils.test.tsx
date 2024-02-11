@@ -2,10 +2,14 @@
 import { validateAndSetLanguage } from './languageUtils';
 
 describe('validateAndSetLanguage', () => {
-  it('should return the provided langcode if valid', () => {
-    const validLangCode = 'fr';
-    const result = validateAndSetLanguage(validLangCode);
-    expect(result).toEqual(validLangCode);
+  // List of supported language codes
+  var supportedLanguages = ['hi', 'es', 'fr', 'de', 'it', 'ja', 'ko', 'pt', 'ru', 'zh', 'ar', 'en', 'nl'];
+
+  supportedLanguages.forEach(langcode => {
+    it(`should return the '${langcode}', if provided '${langcode}' langcode`, () => {
+      const result = validateAndSetLanguage(langcode);
+      expect(result).toEqual(langcode);
+    });
   });
 
   it('should throw an error if the provided langcode is invalid', () => {
